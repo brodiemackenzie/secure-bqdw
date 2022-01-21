@@ -41,30 +41,35 @@ resource "google_project" "terraform_seed_project" {
   name       = "terraform-seed"
   project_id = "terraform-seed-${random_id.random_project_id_suffix.hex}"
   folder_id  = google_folder.secure_bqdw_folder.name
+  billing_account = "01D070-B36FFE-8C74B4"
 }
 
 resource "google_project" "data_ingestion_project" {
   name       = "data-ingestion"
   project_id = "data-ingestion-${random_id.random_project_id_suffix.hex}"
   folder_id  = google_folder.secure_bqdw_folder.name
+  billing_account = "01D070-B36FFE-8C74B4"
 }
 
 resource "google_project" "data_governance_project" {
   name       = "data-governance"
   project_id = "data-governance-${random_id.random_project_id_suffix.hex}"
   folder_id  = google_folder.secure_bqdw_folder.name
+  billing_account = "01D070-B36FFE-8C74B4"
 }
 
 resource "google_project" "non_confidential_project" {
   name       = "non-confidential"
   project_id = "non-confidential-${random_id.random_project_id_suffix.hex}"
   folder_id  = google_folder.secure_bqdw_folder.name
+  billing_account = "01D070-B36FFE-8C74B4"
 }
 
 resource "google_project" "confidential_project" {
   name       = "confidential"
   project_id = "confidential-${random_id.random_project_id_suffix.hex}"
   folder_id  = google_folder.secure_bqdw_folder.name
+  billing_account = "01D070-B36FFE-8C74B4"
 }
 
 /**********************************************
