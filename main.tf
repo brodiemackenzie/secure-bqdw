@@ -2,7 +2,7 @@ terraform {
   required_providers {
     google = {
       source = "hashicorp/google"
-      version = "3.5.0"
+      version = "3.77.0"      
     }
     random = {
       source  = "hashicorp/random"
@@ -331,9 +331,3 @@ resource "google_project_iam_member" "terraform_service_account_confidential_iam
   role    = each.key
   member  = "serviceAccount:${google_service_account.terraform_service_account.email}"
 }
-
-/**********************************************
-Create prerequisite groups
-***********************************************/
-
-# TODO
