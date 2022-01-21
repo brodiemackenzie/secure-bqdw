@@ -14,6 +14,7 @@ terraform {
 provider "google" {
   region  = "us-central1"
   zone    = "us-central1-c"
+
 }
 
 /**********************************************
@@ -70,6 +71,8 @@ resource "google_project" "confidential_project" {
 Enable APIs in prequisite projects
 ***********************************************/
 
+# TODO - Fix billing account enablement prerequisite for activating APIs
+
 variable "terraform_seed_project_service_list" {
   description ="The list of APIs to enable for the terraform seed project"
   type = list(string)
@@ -88,7 +91,7 @@ variable "terraform_seed_project_service_list" {
 
 resource "google_project_service" "terraform_seed_project_services" {
   for_each = toset(var.terraform_seed_project_service_list)
-  project = google_project.terraform_seed_project.id
+  project = google_project.terraform_seed_project.project_id
   service = each.key
 }
 
@@ -119,7 +122,7 @@ variable "data_ingestion_project_service_list" {
 
 resource "google_project_service" "data_ingestion_project_services" {
   for_each = toset(var.data_ingestion_project_service_list)
-  project = google_project.data_ingestion_project.id
+  project = google_project.data_ingestion_project.project_id
   service = each.key
 }
 
@@ -142,7 +145,7 @@ variable "data_governance_project_service_list" {
 
 resource "google_project_service" "data_governance_project_services" {
   for_each = toset(var.data_governance_project_service_list)
-  project = google_project.data_governance_project.id
+  project = google_project.data_governance_project.project_id
   service = each.key
 }
 
@@ -163,7 +166,7 @@ variable "non_confidential_project_service_list" {
 
 resource "google_project_service" "non_confidential_project_services" {
   for_each = toset(var.non_confidential_project_service_list)
-  project = google_project.non_confidential_project.id
+  project = google_project.non_confidential_project.project_id
   service = each.key
 }
 
@@ -191,6 +194,6 @@ variable "confidential_project_service_list" {
 
 resource "google_project_service" "confidential_project_services" {
   for_each = toset(var.confidential_project_service_list)
-  project = google_project.confidential_project.id
+  project = google_project.confidential_project.project_id
   service = each.key
 }
