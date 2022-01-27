@@ -18,12 +18,20 @@ provider "google" {
 }
 
 /**********************************************
+Get organization ID
+***********************************************/
+
+data "google_organization" "org" {
+  domain = var.domain
+}
+
+/**********************************************
 Folder for secure bqdw projects
 ***********************************************/
 
 resource "google_folder" "secure_bqdw_folder" {
   display_name = "secure-bqdw"
-  parent       = "organizations/898267907536"
+  parent       = "organizations/${data.google_organization.org.org_id}"
 }
 
 /**********************************************
