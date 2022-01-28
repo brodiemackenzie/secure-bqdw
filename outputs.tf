@@ -30,11 +30,27 @@ output "org_id" {
 
 output "data_analyst_group" {
     description = "Data Analyst group email address"
-    value = "data-analysts@${var.domain}"
+    value = "${var.data_analyst_group}@${var.domain}"
 }
 
-# data_engineer_group
+output "data_engineer_group" {
+    description = "Data Engineer group email address"
+    value = "${var.data_engineer_group}@${var.domain}"
+}
 
-# security_administrator_group
+output "network_adminsitrator_group" {
+    description = "Network Administrator group email address"
+    value = "${var.network_administrator_group}@${var.domain}"
+}
 
-# security_analyst_group
+output "security_adminsitrator_group" {
+    description = "Security Administrator group email address"
+    value = "${var.security_administrator_group}@${var.domain}"
+}
+
+output "security_analyst_group" {
+    description = "Security Analyst group email address"
+    value = "${var.security_analyst_group}@${var.domain}"
+}
+
+# sdx_project_number
