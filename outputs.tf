@@ -43,12 +43,12 @@ output "data_engineer_group" {
     value = "${var.data_engineer_group}@${var.domain}"
 }
 
-output "network_adminsitrator_group" {
+output "network_administrator_group" {
     description = "Network Administrator group email address"
     value = "${var.network_administrator_group}@${var.domain}"
 }
 
-output "security_adminsitrator_group" {
+output "security_administrator_group" {
     description = "Security Administrator group email address"
     value = "${var.security_administrator_group}@${var.domain}"
 }
@@ -58,4 +58,7 @@ output "security_analyst_group" {
     value = "${var.security_analyst_group}@${var.domain}"
 }
 
-# sdx_project_number - project number where templates are stored, create sdx project with templates
+output "perimeter_additional_members" {
+    description = "Perimeter additional members"
+    value = var.perimeter_additional_members
+}

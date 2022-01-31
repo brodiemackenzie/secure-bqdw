@@ -87,7 +87,8 @@ variable "terraform_seed_project_service_list" {
     "dataflow.googleapis.com",
     "iam.googleapis.com",
     "pubsub.googleapis.com",
-    "cloudbuild.googleapis.com"
+    "cloudbuild.googleapis.com",
+    "bigquery.googleapis.com"
 ]
 }
 
@@ -246,4 +247,9 @@ variable "terraform_service_account_confidential_iam_roles_list" {
     "roles/serviceusage.serviceUsageAdmin",
     "roles/storage.admin"
 ]
+}
+
+variable "perimeter_additional_members" {
+    description = "Perimeter additional members"
+    default = []
 }
