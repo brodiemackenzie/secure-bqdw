@@ -7,14 +7,6 @@ data "google_organization" "org" {
 }
 
 /**********************************************
-Get billing account ID
-***********************************************/
-
-data "google_billing_account" "acct" {
-  display_name = var.billing_account
-}
-
-/**********************************************
 Folder for secure bqdw projects
 ***********************************************/
 
@@ -26,6 +18,7 @@ resource "google_folder" "secure_bqdw_folder" {
 /**********************************************
 Project random id suffix configuration
 ***********************************************/
+
 resource "random_id" "random_project_id_suffix" {
   byte_length = 2
 }
@@ -38,35 +31,42 @@ resource "google_project" "terraform_seed_project" {
   name       = "${var.terraform_seed_project}"
   project_id = "${var.terraform_seed_project}-${random_id.random_project_id_suffix.hex}"
   folder_id  = google_folder.secure_bqdw_folder.name
-  billing_account = data.google_billing_account.acct.id
+  billing_account = var.billing_account_id
 }
 
 resource "google_project" "data_ingestion_project" {
   name       = "${var.data_ingestion_project}"
   project_id = "${var.data_ingestion_project}-${random_id.random_project_id_suffix.hex}"
   folder_id  = google_folder.secure_bqdw_folder.name
-  billing_account = data.google_billing_account.acct.id
+  billing_account = var.billing_account_id
 }
 
 resource "google_project" "data_governance_project" {
   name       = "${var.data_governance_project}"
   project_id = "${var.data_governance_project}-${random_id.random_project_id_suffix.hex}"
   folder_id  = google_folder.secure_bqdw_folder.name
-  billing_account = data.google_billing_account.acct.id
+  billing_account = var.billing_account_id
 }
 
 resource "google_project" "non_confidential_project" {
   name       = "${var.non_confidential_project}"
   project_id = "${var.non_confidential_project}-${random_id.random_project_id_suffix.hex}"
   folder_id  = google_folder.secure_bqdw_folder.name
-  billing_account = data.google_billing_account.acct.id
+  billing_account = var.billing_account_id
 }
 
 resource "google_project" "confidential_project" {
   name       = "${var.confidential_project}"
   project_id = "${var.confidential_project}-${random_id.random_project_id_suffix.hex}"
   folder_id  = google_folder.secure_bqdw_folder.name
-  billing_account = data.google_billing_account.acct.id
+  billing_account = var.billing_account_id
+}
+
+resource "google_project" "sdx_project" {
+  name       = "${var.sdx_project}"
+  project_id = "${var.sdx_project}-${random_id.random_project_id_suffix.hex}"
+  folder_id  = google_folder.secure_bqdw_folder.name
+  billing_account = var.billing_account_id
 }
 
 /**********************************************

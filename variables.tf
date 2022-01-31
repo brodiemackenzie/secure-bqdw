@@ -1,13 +1,11 @@
 variable "domain" {
   description = "Cloud Identity / GCP domain"
   type = string
-  default = "brodiem.altostrat.com"
 }
 
-variable "billing_account" {
-  description = "GCP Billing Account"
+variable "billing_account_id" {
+  description = "GCP Billing Account ID"
   type = string
-  default = "Argolis Billing (brodiem)"
 }
 
 variable "data_analyst_group" {
@@ -70,6 +68,12 @@ variable "confidential_project" {
   default = "confidential"  
 }
 
+variable "sdx_project" {
+  description = "Secure Data Exchange project for Flex Templates"
+  type = string
+  default = "sdx-ext-flx"  
+}
+
 variable "terraform_seed_project_service_list" {
   description ="The list of APIs to enable for the terraform seed project"
   type = list(string)
@@ -82,7 +86,8 @@ variable "terraform_seed_project_service_list" {
     "compute.googleapis.com",
     "dataflow.googleapis.com",
     "iam.googleapis.com",
-    "pubsub.googleapis.com"
+    "pubsub.googleapis.com",
+    "cloudbuild.googleapis.com"
 ]
 }
 

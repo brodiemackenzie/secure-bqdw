@@ -18,6 +18,11 @@ output "confidential_data_project_id" {
     value = google_project.confidential_project.project_id
 }
 
+output "sdx_project_number" {
+    description = "Secure Data Exchange for Flex Templates Project Number"
+    value = google_project.sdx_project.number
+}
+
 output "terraform_service_account" {
     description = "Terraform service account email address"
     value = google_service_account.terraform_service_account.email
@@ -53,4 +58,4 @@ output "security_analyst_group" {
     value = "${var.security_analyst_group}@${var.domain}"
 }
 
-# sdx_project_number
+# sdx_project_number - project number where templates are stored, create sdx project with templates
